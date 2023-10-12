@@ -118,6 +118,12 @@ option {
   padding: 10px;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px #fff;
+  transition: transform 0.2s;
+}
+.movie-card:hover {
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1);
 }
 
 .movie-card img {
