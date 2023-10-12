@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+
 const MovieForm = (props) => {
   const { onAddMovie } = props;
   const [movie, setMovie] = useState({
@@ -28,7 +29,7 @@ const MovieForm = (props) => {
   return (
     <>
       <h2>Movie Form</h2>
-      <form id="add-movie-form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="movie-image">
           Image URL:
           <input

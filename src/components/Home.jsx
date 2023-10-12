@@ -1,65 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import MovieCard from "./MovieCard";
 
 const Home = (props) => {
   const { movies } = props;
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredMovies, setFilteredMovies] = useState([]);
-  const handleSearch = () => {
+  const [filteredMovies, setFilteredMovies] = useState(movies);
+
+  useEffect(() => {
+    setFilteredMovies(JSON.parse(localStorage.getItem("My-IMDB")) || []);
+  }, [movies]);
+
+  useEffect(() => {
     const filtered = movies.filter((movie) =>
       movie.title.toLowerCase().startsWith(searchTerm.toLowerCase())
     );
+    if (!searchTerm) {
+      setFilteredMovies(movies);
+    }
     setFilteredMovies(filtered);
-  };
-  const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
+  }, [searchTerm]);
+
+  const handleSearch = () => {
+    console.log("clicked search");
   };
   return (
-    <div className="container">
+    <>
       <div className="search-container">
         <input
           type="text"
-          id="movie-search"
-          placeholder="Search by movie title..."
+          className="movie-search"
           value={searchTerm}
-          onChange={handleInputChange}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search by movie title..."
         />
-        <button onClick={handleSearch} id="search-button">
-          Search
+        <button className="search-button" onClick={handleSearch}>
+          search
         </button>
       </div>
       <div className="movie-cards">
-        {filteredMovies.map((movie) => (
-          <div className="movie-card" key={movie.id}>
-            {" "}
-            {/* Add key prop */}
-            <img src={movie.image} alt={movie.title} />
-            <h3>{movie.title}</h3>
-            <p>Year: {movie.year}</p>
-            <p>
-              Rating:
-              {(() => {
-                const stars = [];
-                for (let i = 0; i < Number(movie.rating); i++) {
-                  stars.push(
-                    <span key={i} className="star gold">
-                      &#9733;
-                    </span>
-                  );
-                }
-                for (let i = Number(movie.rating); i < 5; i++) {
-                  stars.push(
-                    <span key={i} className="star">
-                      &#9733;
-                    </span>
-                  );
-                }
-                return stars;
-              })()}
-            </p>
+        {filteredMovies.map((movie, index) => (
+          <div className="movie-card" key={index}>
+            <MovieCard movie={movie} />
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

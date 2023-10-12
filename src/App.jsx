@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Home from "./components/Home";
 import MovieForm from "./components/MovieForm";
+import NavigationBar from "./components/NavigationBar";
 import { v4 as uuidv4 } from "uuid";
 
 function setToLocalStorage(movies) {
@@ -32,18 +33,11 @@ function App() {
   return (
     <>
       <h1>My IMDB</h1>
-      <div className="navBar">
-        <a href="#" onClick={() => setShowAddMovie(false)}>
-          Home
-        </a>
-        <a href="#" onClick={() => setShowAddMovie(true)}>
-          Add Movie
-        </a>
-      </div>
+      <NavigationBar setShowAddMovie={setShowAddMovie} />
       <main>
         {showAddMovie ? (
-          <div className="backgroundForm">
-            <div id="addMovie">
+          <div className="formbackground-image">
+            <div className="addMovie">
               <MovieForm onAddMovie={handleAddMovie} />
             </div>
           </div>
