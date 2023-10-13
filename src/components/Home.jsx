@@ -50,18 +50,7 @@ const Home = (props) => {
 
   return (
     <>
-      <div className="search-container">
-        <input
-          type="text"
-          id="movie-search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search by movie title..."
-        />
-        <button id="search-button" onClick={handleSearch}>
-          Search
-        </button>
-      </div>
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="movie-cards">
         {currentMovies.map((movie, index) => (
           <div className="movie-card" key={index}>

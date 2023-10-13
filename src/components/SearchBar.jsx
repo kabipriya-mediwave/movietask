@@ -1,18 +1,22 @@
-import { Link } from "react-router-dom";
-
-const Nav = () => {
+const SearchBar = (props) => {
+  const { setSearchTerm, searchTerm } = props;
+  const handleSearch = () => {
+    console.log("clicked search");
+  };
   return (
-    <nav>
-      <ul className="navBar">
-        <li>
-          <Link to="/home">Home</Link>
-        </li>
-        <li>
-          <Link to="/form">Add Movie</Link>
-        </li>
-      </ul>
-    </nav>
+    <div className="search-container">
+      <input
+        type="text"
+        id="movie-search"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search by movie title..."
+      />
+      <button id="search-button" onClick={handleSearch}>
+        search
+      </button>
+    </div>
   );
 };
 
-export default Nav;
+export default SearchBar;

@@ -6,7 +6,7 @@ const StarRating = (props) => {
     <>
       {(() => {
         const stars = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 1; i < 6; i++) {
           const isGold = i < rating;
           stars.push(<Star key={i} isGold={isGold} />);
         }
