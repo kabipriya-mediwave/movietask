@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
+import SearchBar from "./SearchBar";
 
 const Home = (props) => {
   const { movies } = props;

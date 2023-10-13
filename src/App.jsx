@@ -1,7 +1,14 @@
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
-import { Home, MovieForm, NavigationBar } from "./components";
 import { v4 as uuidv4 } from "uuid";
+import IndexPage from "./pages/IndexPage";
+import NotfoundPage from "./pages/NotfoundPage";
+const FormPage = lazy(() => import("./pages/FormPage"));
+
+function Loading() {
+  return <p>Loading ...</p>;
+}
 
 function setToLocalStorage(movies) {
   localStorage.setItem("My-IMDB", JSON.stringify(movies));
@@ -13,8 +20,6 @@ function getFromLocalStorage() {
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [showAddMovie, setShowAddMovie] = useState(false);
-
   useEffect(() => setMovies(getFromLocalStorage()), []);
   useEffect(() => {
     if (!movies) {
@@ -26,26 +31,21 @@ function App() {
     const updatedMovies = [{ id: uuidv4(), ...newMovie }, ...movies];
     setMovies(updatedMovies);
     setToLocalStorage(updatedMovies);
-    setShowAddMovie(false);
   }
   return (
-    <>
-      <h1>My IMDB</h1>
-      <NavigationBar setShowAddMovie={setShowAddMovie} />
-      <main>
-        {showAddMovie ? (
-          <div className="formbackground-image">
-            <div id="addMovie">
-              <MovieForm onAddMovie={handleAddMovie} />
-            </div>
-          </div>
-        ) : (
-          <div id="home">
-            <Home movies={movies} />
-          </div>
-        )}
-      </main>
-    </>
+    <Suspense fallback={<Loading />}>
+      <BrowserRouter>
+        <h1>My IMDB</h1>
+        <Routes>
+          <Route path="/home" element={<IndexPage movies={movies} />} />
+          <Route
+            path="/form"
+            element={<FormPage onAddMovie={handleAddMovie} />}
+          />
+          <Route path="*" element={<NotfoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 

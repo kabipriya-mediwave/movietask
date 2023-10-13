@@ -26,7 +26,7 @@ const MovieForm = (props) => {
     });
   };
   return (
-    <>
+    <div className="addMovie">
       <h2>Movie Form</h2>
       <form id="add-movie-form" onSubmit={handleSubmit}>
         <label htmlFor="movie-image">
@@ -85,7 +85,7 @@ const MovieForm = (props) => {
 
         <button type="submit">Add Movie</button>
       </form>
-    </>
+    </div>
   );
 };
 
