@@ -42,7 +42,7 @@ const Home = (props) => {
   };
 
   const prevPage = () => {
-    if (currentPage > 1) {
+    if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
     }
   };
@@ -69,7 +69,7 @@ const Home = (props) => {
         ))}
       </div>
       <div className="pagination">
-        <button onClick={prevPage} disabled={currentPage === 1}>
+        <button onClick={prevPage} disabled={currentPage <= 1}>
           Previous Page
         </button>
         <button

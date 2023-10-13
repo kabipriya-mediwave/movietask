@@ -173,6 +173,10 @@ form label {
   justify-content: space-between;
 }
 /* Styling for the previous and next buttons */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
 .pagination button {
   background-color: yellow;
   color: black;
@@ -180,8 +184,6 @@ form label {
   border: none;
   border-radius: -26px;
   margin: 45px;
-  margin-left: 400px;
-  margin-right: 27px;
 }
 
 .pagination button:disabled {
