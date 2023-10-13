@@ -28,11 +28,13 @@ a:hover {
 }
 input,
 select {
-  width: 50%;
   padding: 8px 10px;
   color: #000;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+select {
+  width: 280px;
 }
 label {
   margin-bottom: 10px;
@@ -42,11 +44,6 @@ label {
   justify-content: left;
 }
 
-form label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 button {
   background-color: rgb(245, 197, 24);
   color: #000;
@@ -74,19 +71,19 @@ option {
   text-align: center;
   margin-bottom: 20px;
 }
-.movie-search {
+#movie-search {
   border-radius: 5px 0px 0px 5px;
 }
-.movie-search:focus {
+#movie-search:focus {
   outline: 2px solid rgb(245, 197, 24);
 }
 
-.search-button {
+#search-button {
   border-radius: 0px 5px 5px 0px;
 }
 .movie-cards {
-  margin-top: 45px;
-  max-width: 1500px;
+  padding-top: 35px;
+  width: 1400px;
   margin: 0 auto;
   display: grid;
   gap: 40px;
@@ -94,29 +91,27 @@ option {
 }
 @media (max-width: 1520px) {
   .movie-cards {
-    width: 1080px;
+    width: 965px;
     grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (max-width: 991px) {
   .movie-cards {
-    width: 750px;
+    width: 624px;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (max-width: 768px) {
   .movie-cards {
-    width: 320px;
+    width: 310px;
     grid-template-columns: 1fr;
   }
 }
 
 .movie-card {
   width: 300px;
-  height: 552px;
-  margin: 20px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #1f1f1f;
   box-shadow: 0 0 10px #fff;
   transition: transform 0.2s;
 }
@@ -127,9 +122,9 @@ option {
 }
 
 .movie-card img {
-  max-width: 100%;
-  height: 83%;
-  box-shadow: 0 0 2px #fff;
+  width: 278px;
+  height: 392px;
+  box-shadow: 0 0 2px #ccc;
 }
 .movie-card h3 {
   width: 20ch;
@@ -137,14 +132,13 @@ option {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
 .star {
   color: #fff;
 }
 .gold {
   color: rgb(245, 197, 24);
 }
-.addMovie {
+#addMovie {
   margin: 0px auto;
   padding: 20px;
   width: 500px;
@@ -154,11 +148,14 @@ option {
   box-shadow: 0 0 20px #ccc;
 }
 @media (max-width: 528px) {
-  .addMovie {
+  #addMovie {
     width: 300px;
   }
   form label {
     flex-direction: column;
+  }
+  form input {
+    display: block;
   }
 }
 
@@ -170,4 +167,24 @@ option {
 
 .form-button {
   margin-top: 10px;
+}
+
+form label {
+  justify-content: space-between;
+}
+/* Styling for the previous and next buttons */
+.pagination button {
+  background-color: yellow;
+  color: black;
+  padding: 11px 17px;
+  border: none;
+  border-radius: -26px;
+  margin: 45px;
+  margin-left: 400px;
+  margin-right: 27px;
+}
+
+.pagination button:disabled {
+  background-color: #ccc; /* Gray background for disabled buttons */
+  cursor: not-allowed;
 }

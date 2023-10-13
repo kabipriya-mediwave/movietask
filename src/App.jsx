@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import Home from "./components/Home";
-import MovieForm from "./components/MovieForm";
-import NavigationBar from "./components/NavigationBar";
+import { Home, MovieForm, NavigationBar } from "./components";
 import { v4 as uuidv4 } from "uuid";
 
 function setToLocalStorage(movies) {
@@ -37,7 +35,7 @@ function App() {
       <main>
         {showAddMovie ? (
           <div className="formbackground-image">
-            <div className="addMovie">
+            <div id="addMovie">
               <MovieForm onAddMovie={handleAddMovie} />
             </div>
           </div>
